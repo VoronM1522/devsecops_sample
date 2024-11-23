@@ -81,7 +81,10 @@ jobs:
        python-version: 3.8
 
    - name: Download, install and deploy pygoat
-     run: mkdir my_pygoat && cd my_pygoat && git clone https://github.com/adeyosemanputra/pygoat.git && cd pygoat && bash installer.sh && python3 manage.py migrate && python3 manage.py runserver &; sleep 15
+     run: mkdir my_pygoat && cd my_pygoat && git clone https://github.com/adeyosemanputra/pygoat.git && cd pygoat && bash installer.sh && python3 manage.py migrate && python3 manage.py runserver &
+
+   - name: Wait
+     run: sleep 15
 
    - name: ZAP Scan
      uses: zaproxy/action-full-scan@v0.12.0
