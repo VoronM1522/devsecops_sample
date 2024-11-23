@@ -82,3 +82,9 @@ jobs:
 
    - name: Download, install and deploy pygoat
      run: mkdir my_pygoat && cd my_pygoat && git clone https://github.com/adeyosemanputra/pygoat.git && cd pygoat && bash installer.sh && python3 manage.py migrate && python3 manage.py runserver
+
+   - name: ZAP Scan
+     uses: zaproxy/action-full-scan@v0.12.0
+     with:
+       target: 'http://127.0.0.1:8000'
+
