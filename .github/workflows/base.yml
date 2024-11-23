@@ -84,9 +84,7 @@ jobs:
      run: apt install git
 
    - name: Download and install pygoat
-     run: git clone https://github.com/adeyosemanputra/pygoat.git \
-     bash installer.sh \
-     python3 manage.py migrate
+     run: git clone https://github.com/adeyosemanputra/pygoat.git && bash installer.sh && python3 manage.py migrate
 
    - name: Deploy pygoat
      run: python3 manage.py runserver
