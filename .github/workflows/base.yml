@@ -81,7 +81,7 @@ jobs:
        python-version: 3.8
 
    - name: Download and install pygoat
-     run: mkdir my_pygoat && cd my_pygoat && cd pygoat && git clone https://github.com/adeyosemanputra/pygoat.git && bash installer.sh && python3 manage.py migrate
+     run: mkdir my_pygoat && cd my_pygoat && git clone https://github.com/adeyosemanputra/pygoat.git && && cd pygoat bash installer.sh && python3 manage.py migrate
 
    - name: Deploy pygoat
      run: python3 manage.py runserver
