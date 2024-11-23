@@ -80,9 +80,6 @@ jobs:
      with:
        python-version: 3.8
 
-   - name: Preparation
-     run: apt install git
-
    - name: Download and install pygoat
      run: git clone https://github.com/adeyosemanputra/pygoat.git && bash installer.sh && python3 manage.py migrate
 
