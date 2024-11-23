@@ -84,4 +84,4 @@ jobs:
      run: mkdir my_pygoat && cd my_pygoat && git clone https://github.com/adeyosemanputra/pygoat.git && cd pygoat && bash installer.sh && python3 manage.py migrate
 
    - name: Deploy pygoat
-     run: python3 manage.py runserver
+     run: cd ~/my_pygoal/pygoal && python3 manage.py runserver
