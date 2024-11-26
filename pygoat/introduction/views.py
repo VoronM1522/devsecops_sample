@@ -67,7 +67,7 @@ def register(request):
 #         return render(request,"registration/register.html",{"form":form,})
 
 def home(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,'introduction/home.html',)
     else:
         return redirect('login')
@@ -85,13 +85,13 @@ def authentication_decorator(func):
 
 
 def xss(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/XSS/xss.html")
     else:
         return redirect('login')
 
 def xss_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         q=request.GET.get('q','')
         f=FAANG.objects.filter(company=q)
         if f:
@@ -104,7 +104,7 @@ def xss_lab(request):
         
 
 def xss_lab2(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         
         username = request.POST.get('username', '')
         if username:
@@ -120,7 +120,7 @@ def xss_lab2(request):
         return redirect('login')
     
 def xss_lab3(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method == 'POST':
             username = request.POST.get('username')
             print(type(username))
@@ -137,14 +137,14 @@ def xss_lab3(request):
 #***********************************SQL****************************************************************#
 
 def sql(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
 
         return  render(request,'Lab/SQL/sql.html')
     else:
         return redirect('login')
 
 def sql_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
 
         name=request.POST.get('name')
 
@@ -190,7 +190,7 @@ def sql_lab(request):
 #***************** INSECURE DESERIALIZATION***************************************************************#
 
 def insec_des(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return  render(request,'Lab/insec_des/insec_des.html')
     else:
         return redirect('login')
@@ -202,7 +202,7 @@ pickled_user = pickle.dumps(TestUser())
 encoded_user = base64.b64encode(pickled_user)
 
 def insec_des_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         response = render(request,'Lab/insec_des/insec_des_lab.html', {"message":"Only Admins can see this page"})
         token = request.COOKIES.get('token')
         if token == None:
@@ -223,21 +223,21 @@ def insec_des_lab(request):
 
 
 def xxe(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
 
         return render (request,'Lab/XXE/xxe.html')
     else:
         return redirect('login')
 
 def xxe_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,'Lab/XXE/xxe_lab.html')
     else:
         return redirect('login')
 
 @csrf_exempt
 def xxe_see(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
 
         data=comments.objects.all()
         com=data[0].comment
@@ -328,13 +328,13 @@ def auth_lab_logout(request):
 
 @csrf_exempt
 def ba(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/BrokenAccess/ba.html")
     else:
         return redirect('login')
 @csrf_exempt
 def ba_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         name = request.POST.get('name')
         password = request.POST.get('pass')
         if name:
@@ -378,18 +378,18 @@ def ba_lab(request):
 
 
 def data_exp(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return  render(request,'Lab/DataExp/data_exp.html')
     else:
         return redirect('login')
 
 def data_exp_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return  render(request,'Lab/DataExp/data_exp_lab.html')
     else:
         return redirect('login')
 def robots(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         response = render(request,'Lab/DataExp/robots.txt')
         response['Content-Type'] =  'text/plain'
         return response
@@ -401,13 +401,13 @@ def error(request):
 #******************************************************  Command Injection  ***********************************************************************#
 
 def cmd(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,'Lab/CMD/cmd.html')
     else:
         return redirect('login')
 @csrf_exempt
 def cmd_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if(request.method=="POST"):
             domain=request.POST.get('domain')
             domain=domain.replace("https://www.",'')
@@ -444,7 +444,7 @@ def cmd_lab(request):
 
 @csrf_exempt
 def cmd_lab2(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if (request.method=="POST"):
             val=request.POST.get('val')
             
@@ -464,13 +464,13 @@ def cmd_lab2(request):
 #******************************************Broken Authentication**************************************************#
 
 def bau(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
 
         return render(request,"Lab/BrokenAuth/bau.html")
     else:
         return redirect('login')
 def bau_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
             return render(request,"Lab/BrokenAuth/bau_lab.html")
         else:
@@ -514,13 +514,13 @@ def Otp(request):
 #*****************************************Security Misconfiguration**********************************************#
 
 def sec_mis(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/sec_mis/sec_mis.html")
     else:
         return redirect('login')
 
 def sec_mis_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/sec_mis/sec_mis_lab.html")
     else:
         return redirect('login')
@@ -536,13 +536,13 @@ def secret(request):
 #**********************************************************A9*************************************************#
 
 def a9(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/A9/a9.html")
     else:
         return redirect('login')
 @csrf_exempt
 def a9_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
             return render(request,"Lab/A9/a9_lab.html")
         else:
@@ -565,7 +565,7 @@ def get_version(request):
 
 @csrf_exempt
 def a9_lab2(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and False:
         return redirect('login')
     
     if request.method == "GET":
@@ -605,12 +605,12 @@ def A9_discussion(request):
 #*********************************************************A10*************************************************#
 
 def a10(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/A10/a10.html")
     else:
         return redirect('login')
 def a10_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
 
             return render(request,"Lab/A10/a10_lab.html")
@@ -673,13 +673,13 @@ def gentckt():
     return (''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=10)))
 
 def insec_desgine(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/A11/a11.html")
     else:
         return redirect('login')
 
 def insec_desgine_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
             tkts = tickits.objects.filter(user = request.user)
             Tickets = []
@@ -730,7 +730,7 @@ def insec_desgine_lab(request):
 
 @csrf_exempt
 def a1_broken_access(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and False:
         return redirect('login')
     
     return render(request,"Lab_2021/A1_BrokenAccessControl/broken_access.html")
@@ -738,7 +738,7 @@ def a1_broken_access(request):
 
 @csrf_exempt
 def a1_broken_access_lab_1(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         pass
     else:
         return redirect('login')
@@ -774,7 +774,7 @@ def a1_broken_access_lab_1(request):
 
 @csrf_exempt
 def a1_broken_access_lab_2(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         pass
     else:
         return redirect('login')
@@ -813,7 +813,7 @@ def a1_broken_access_lab_2(request):
         return render(request,'Lab_2021/A1_BrokenAccessControl/broken_access_lab_2.html',{"no_creds":True})
 
 def a1_broken_access_lab_3(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and False:
         return redirect('login')
     if request.method == 'GET':
         return render(request, 'Lab_2021/A1_BrokenAccessControl/broken_access_lab_3.html', {'loggedin':False})
@@ -828,7 +828,7 @@ def a1_broken_access_lab_3(request):
         return render(request, 'Lab_2021/A1_BrokenAccessControl/broken_access_lab_3.html', {'loggedin':False})
 
 def a1_broken_access_lab3_secret(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and False:
         return redirect('login')
     # no checking applied here
     return render(request, 'Lab_2021/A1_BrokenAccessControl/secret.html')
@@ -838,7 +838,7 @@ def a1_broken_access_lab3_secret(request):
 
 @csrf_exempt
 def injection(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and False:
         return redirect('login')
     
     return render(request,"Lab_2021/A3_Injection/injection.html")
@@ -846,7 +846,7 @@ def injection(request):
 
 @csrf_exempt
 def injection_sql_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
 
         name=request.POST.get('name')
         password=request.POST.get('pass')
@@ -903,13 +903,13 @@ def injection_sql_lab(request):
 #*********************************************************SSRF*************************************************#
 
 def ssrf(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/ssrf/ssrf.html")
     else:
         return redirect('login')
 
 def ssrf_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
             return render(request,"Lab/ssrf/ssrf_lab.html",{"blog":"Read Blog About SSRF"})
         else:
@@ -926,7 +926,7 @@ def ssrf_lab(request):
         return redirect('login')
 
 def ssrf_discussion(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab/ssrf/ssrf_discussion.html")
     else:
         return redirect('login')
@@ -960,13 +960,13 @@ def ssrf_lab2(request):
 #--------------------------------------- Server-side template injection --------------------------------------#
 
 def ssti(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab_2021/A3_Injection/ssti.html")
     else:
         return redirect('login')
 
 def ssti_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
             users_blogs = Blogs.objects.filter(author=request.user)
             return render(request,"Lab_2021/A3_Injection/ssti_lab.html", {"blogs":users_blogs})
@@ -994,7 +994,7 @@ def ssti_lab(request):
 
 
 def ssti_view_blog(request,blog_id):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
             return render(request,f"Lab_2021/A3_Injection/Blogs/{blog_id}.html")
         elif request.method=="POST":
@@ -1003,13 +1003,13 @@ def ssti_view_blog(request,blog_id):
 #-------------------------Cryptographic Failure -----------------------------------#
 
 def crypto_failure(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         return render(request,"Lab_2021/A2_Crypto_failur/crypto_failure.html",{"success":False,"failure":False})
     else:
         redirect('login')
 
 def crypto_failure_lab(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method=="GET":
             return render(request,"Lab_2021/A2_Crypto_failur/crypto_failure_lab.html")
         elif request.method=="POST":
@@ -1025,7 +1025,7 @@ def crypto_failure_lab(request):
         return redirect('login')
 
 def crypto_failure_lab2(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method == "GET":
             return render(request,"Lab_2021/A2_Crypto_failur/crypto_failure_lab2.html")
         elif request.method == "POST":
@@ -1040,7 +1040,7 @@ def crypto_failure_lab2(request):
 
 # based on CWE-319
 def crypto_failure_lab3(request):
-    if request.user.is_authenticated:
+    if request.user.is_authenticated or True:
         if request.method == "GET":
             try :
                 cookie = request.COOKIES["cookie"]
@@ -1081,7 +1081,7 @@ from pygoat.settings import SECRET_COOKIE_KEY
 
 
 def sec_misconfig_lab3(request):
-    if not request.user.is_authenticated:
+    if not request.user.is_authenticated and False:
         return redirect('login')
     try:
         cookie = request.COOKIES["auth_cookie"]
